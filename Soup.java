@@ -3,37 +3,43 @@ public class Soup {
     private String letters;
     private String company;
 
-    //this is a constructor it sets the instance variables (more on this later in the year)
+    // Precondition: none.
+    // Postcondition: letters is initialized to an empty string and company is set to "none".
     public Soup(){
         letters ="";
         company = "none";
     }
 
 
-    //sets the name of the company to the provided nam e
+    // Precondition: company is a valid String value.
+    // Postcondition: the instance variable company is set to the provided company name.
     public void setCompany(String company){
         this.company = company;
     }
 
-    //returns the company name
+    // Precondition: none.
+    // Postcondition: returns the current company name stored in the object.
     public String getCompany(){
         return company;
     }
 
-    //returns letters
+    // Precondition: none.
+    // Postcondition: returns the current letters string stored in the object.
     public String getLetters(){
         return letters;
     }
 
 //below are the functions you'll be writing.
 
-    //adds a word to the pool of letters known as "letters"
+    // Precondition: word is a valid String value.
+    // Postcondition: the given word has been appended to the end of the letters string.
     public void add(String word){
         letters += word;
     }
 
 
-    //Use Math.random() to get a random character from the letters string and return it.
+    // Precondition: letters is not empty.
+    // Postcondition: returns one random character from the letters string.
     public char randomLetter(){
     int numRandom = (int)(Math.random()*letters.length());
         char randomC = letters.charAt(numRandom);
@@ -41,8 +47,8 @@ public class Soup {
     }
 
 
-    //returns the letters currently stored with the company name placed directly in the center of all
-    //the letters
+    // Precondition: none.
+    // Postcondition: returns the letters string with the company name inserted in the middle.
     public String companyCentered(){
         int middle = (int)(letters.length()/2);
         String lettersleft = letters.substring(0,middle);
@@ -51,20 +57,23 @@ public class Soup {
     }
 
 
-    //should remove the first available vowel from letters. If there are no vowels this method has no effect.
+    // Precondition: letters may contain any characters.
+    // Postcondition: the first vowel in letters has been removed if one exists; otherwise, letters is unchanged.
     public void removeFirstVowel(){
         String regex = "[aeiouAEIOU]";
         letters = letters.replaceFirst(regex,"");
     }
 
-    //should remove "num" letters from a random spot in the string letters. You may assume num never exceeds the length of the string.
+    // Precondition: num is a non-negative integer that does not exceed the length of letters.
+    // Postcondition: num letters are removed from a random position in letters.
     public void removeSome(int num){
-        int index = (int)Math.random()*(letters.length()-num+1);
-        letters=letters.substring(0,index)+letters.substring(index-num);
+        int index = (int)Math.random()*((letters.length()-num));
+        letters= letters.substring(0,index)+ letters.substring(index+num);
     }
 
-    //should remove the word "word" from the string letters. If the word is not found in letters then it does nothing.
+    // Precondition: word is a valid String value.
+    // Postcondition: the first occurrence of word is removed from letters if present; otherwise, letters remains unchanged.
     public void removeWord(String word){
-        
+        letters = letters.replace("word","");
     }
 }
